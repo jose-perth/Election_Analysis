@@ -38,7 +38,7 @@ Note: the input file **election_results.csv** is too large to be displayed in Gi
 
 Below is a snapshot of the election audit results requested by the Colorado Board of Elections.
 
-[![election results](/resources/election_results_snapshot.png "Election Results")](/resources/election_results_snapshot.png)
+[![election results](/resources/election_results_view.png "Election Results")](/resources/election_results_view.png)
 
 We can further discuss the information requested by the Colorado Board of Elections.
 
