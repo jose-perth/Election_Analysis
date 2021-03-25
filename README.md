@@ -21,25 +21,79 @@ The information requested includes:
 - The winner of the election based on popular vote
 
 ## Results
-Analysis of the provided .csv input file was carried out using Python 3.9.2.  The output file is [election_results](/analysis/election_results.txt).
 
-[input file](/resources/election_results.csv)   :arrow_right: [Python Script](PyPoll_Challenge.py)    :arrow_right: [election_results](/analysis/election_results.txt)
+Analysis of the input file was carried out using Python 3.9.2.  The output file is [election_results](/analysis/election_results.txt).
 
+input file :arrow_right: [Python Script](PyPoll_Challenge.py)    :arrow_right: [election_results](/analysis/election_results.txt)
 
-Deliverable 1: The Election Results Printed to the Command Line
-Deliverable 2: The Election Results Saved to a Text File
-Deliverable 3: A written Analysis of the Election Audit (README.md)
+The input file is a CSV file with a hearder row and the following information for the ballots:
 
-The data consists of a number for the ballot ID and a name for the county and candidate, respectively. 
+- ballot ID
+- county
+- candidate
 
-## Election Audit Results
+Note: the input file **election_results.csv** is too large to be displayed in GitHub, but it can be downloaded from the folder [resources/](resources/).
 
-Using a bulleted list, address the following election outcomes. Use images or examples of your code as support where necessary.
+### Election Audit Results
 
-How many votes were cast in this congressional election?
-Provide a breakdown of the number of votes and the percentage of total votes for each county in the precinct.
-Which county had the largest number of votes?
-Provide a breakdown of the number of votes and the percentage of the total votes each candidate received.
-Which candidate won the election, what was their vote count, and what was their percentage of the total votes?
+Below is a snapshot of the election audit results requested by the Colorado Board of Elections.
+
+[![election results](/resources/election_results_snapshot.png "Election Results")](/resources/election_results_snapshot.png)
+
+We can further discuss the information requested by the Colorado Board of Elections.
+
+- Total votes: there were 369,711 ballots in the input file.
+- County votes: votes were tallied by county and a percentage of votes for each county with respect to the total number of votes presented to 1 decimal place.
+
+| County    | Percentage Votes  | Votes |
+|:---       |:---:              |---:   |
+| Jefferson  | 10.5% | 38,855 |
+| Denver | 82.8% | 306,055 |
+| Arapahoe | 6.7% | 24,801|
+
+  The code used to calculate and display the percentage value is:
+
+```python
+# 6c: Calculate the percentage of votes for the county.
+        vote_percentage = float(votes) / float(total_votes) * 100
+        county_results = (
+            f"{county_name}: {vote_percentage:.1f}% ({votes:,})\n")
+```
+
+  Note the ` :.1f ` used to display the value to 1 decimal place.
+
+- Denver has the largest number of votes with 306,055, or 82.8% of the total number.
+- Candidate votes: votes were tallied by candidate and a percentage of the total calculated for each candidate, to 1 decimal place.
+
+| Candidate    | Percentage Votes  | Votes |
+|:---       |:---:              |---:   |
+| Charles Casper Stockham | 23.0% | 85,213 |
+| Diana DeGette | 73.8% | 272,892 |
+| Raymon Anthony Doane | 3.1% | 11,606 |
+
+- The analysis determined that the candidate ***Diana DeGette*** obtained the most votes with 272,892 votes, which corresponds to 73.8% of the total vote count.
+
+A text file with these results is available at [`analysis/election_results.txt`](analysis/election_results.txt).
+
 ## Election Audit Summary
-In a summary statement, provide a business proposal to the election commission on how this script can be used—with some modifications—for any election. Give at least two examples of how this script can be modified to be used for other elections.
+
+The script created is able to provide the information requested by the Colorado Board of Elections.  
+
+However, it can be enhanced to cover other needs that may arise in the future.  Including:
+
+1. Ability to read and tabulate from multiple input files with a similar format. Python's `os` library provides methods such as `os.scandir()` and `os.walk()` that can be used to process multiple files in one run. For example the code below can be used as a first loop:
+
+```python
+    directory = os.path.join('input_files')
+    for filename in os.scandir(directory):
+```
+
+2. Ability to identify and report duplicate Ballot ID's. Although this will increase the processing time due to the searchs involved, this step could be critical when dealing with input files from multiple sources as further action may be required for those ballots. As a first step on the analysis, each ballot ID must be checked against a master ballot list and added to it if it doesn't exists. Similar to existing code:
+
+```python
+    if ballot_id not in ballot_master:
+        # Add the ballot ID to the ballot list.
+        ballot_master.append(ballot_id)
+```
+
+3. Provide candidate totals by County to help audit County level elections. Initial pseudocoding points to nested dictionaries to store the `candidate_votes` dictionary in a `county_votes` dictionary.
