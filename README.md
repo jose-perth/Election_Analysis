@@ -1,21 +1,39 @@
 # Election_Analysis
 
 ## Overview of Project
-Explain the purpose of this election audit analysis.
 
+This project is the third weekly challenge of the Data Science Bootcamp.  It allows us to put into practice and showcase the skills learned in Module 3 of the bootcamp.
 
-The election commission has requested some additional data to complete the audit:
+### Purpose
 
-The voter turnout for each county
-The percentage of votes from each county out of the total count
-The county with the highest turnout
+The Colorado Board of Elections has requested information to be computed from their input file. This information will be included as part of an election audit.
+
+The information requested includes:
+
+- Total number of votes cast
+- County information:
+    - The voter turnout for each county
+    - The percentage of votes from each county out of the total count
+    - The county with the highest turnout
+- Complete list of candidates who received votes
+- Total number of votes each candidate received
+- Percentage of votes each candidate won
+- The winner of the election based on popular vote
+
+## Results
+Analysis of the provided .csv input file was carried out using Python 3.9.2.  The output file is [election_results](/analysis/election_results.txt).
+
+[input file](/resources/election_results.csv)   :+27a1: [Python Script](PyPoll_Challenge.py)    :+27a1: [election_results](/analysis/election_results.txt)
 
 
 Deliverable 1: The Election Results Printed to the Command Line
 Deliverable 2: The Election Results Saved to a Text File
 Deliverable 3: A written Analysis of the Election Audit (README.md)
 
+The data consists of a number for the ballot ID and a name for the county and candidate, respectively. 
+
 ## Election Audit Results
+
 Using a bulleted list, address the following election outcomes. Use images or examples of your code as support where necessary.
 
 How many votes were cast in this congressional election?
