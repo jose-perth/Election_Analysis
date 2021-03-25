@@ -23,7 +23,7 @@ The information requested includes:
 ## Results
 Analysis of the provided .csv input file was carried out using Python 3.9.2.  The output file is [election_results](/analysis/election_results.txt).
 
-[input file](/resources/election_results.csv)   :+27a1: [Python Script](PyPoll_Challenge.py)    :+27a1: [election_results](/analysis/election_results.txt)
+[input file](/resources/election_results.csv)   :right_arrow: [Python Script](PyPoll_Challenge.py)    :right_arrow: [election_results](/analysis/election_results.txt)
 
 
 Deliverable 1: The Election Results Printed to the Command Line
